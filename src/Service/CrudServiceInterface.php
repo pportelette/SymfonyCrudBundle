@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace Pportelette\CrudBundle\Service;
 
 use Pportelette\PageableBundle\Model\Pageable;
 use Pportelette\CrudBundle\Model\ViewModel;

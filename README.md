@@ -178,10 +178,17 @@ public function deleteEntity(int $id): void;
 
 ```php
 // src/Service/CategoryService.php
+// ...
 use Pportelette\CrudBundle\Service\CrudService;
 use Pportelette\PageableBundle\Model\Pageable;
 
-class WordService extends CrudService {
+class WordService extends CrudService
+{
+    public function __construct(CategoryRepository $wordRepository)
+    {
+        parent::__construct($wordRepository, CategoryVM::class);
+    }
+
     public function getAll(int $page, array $params = []): Pageable
     {    
         // Your custom code
@@ -204,7 +211,8 @@ public function getList(array $filters = []): array;
 
 // ...
 
-public function getAll(int $page, array $filters = []): Pageable {
+public function getAll(int $page, array $filters = []): Pageable
+{
     $qb = $this->createQueryBuilder('w');
 
     // Your custom code
