@@ -27,7 +27,7 @@ class CrudRepository extends AbstractRepository implements CrudRepositoryInterfa
         );
     }
 
-    public function getList(array $filters = null): array {
+    public function getList(?array $filters = null): array {
         $qb = $this->createQueryBuilder('w');
         
         foreach($filters as $prop => $value) {

@@ -8,7 +8,7 @@ abstract class ViewModel implements ViewModelInterface {
     abstract public function fromEntity(): void; 
     abstract public function toEntity();
 
-    public function __construct(array $properties = null) {
+    public function __construct(?array $properties = null) {
         if(!$properties) {
             return;
         }
