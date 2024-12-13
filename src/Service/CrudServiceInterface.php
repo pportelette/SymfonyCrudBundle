@@ -12,8 +12,8 @@ interface CrudServiceInterface {
     
     public function getAll(int $page, array $filters = []): Pageable;
     public function getList(array $filters = []): array;
-    public function getEntity(int $id): ViewModel;
+    public function getEntity(string $id): ViewModel;
     public function createEntity(array $properties): ViewModel;
-    public function updateEntity(int $id, array $properties): ViewModel;
-    public function deleteEntity(int $id): void;
+    public function updateEntity(string $id, array $properties): ViewModel;
+    public function deleteEntity(string $id): void;
 }

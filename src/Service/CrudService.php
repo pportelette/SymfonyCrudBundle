@@ -11,7 +11,7 @@ class CrudService implements CrudServiceInterface
     protected $repository;
     protected $entityClass;
     
-    public function __construct(CrudRepositoryInterface $repository, string $entityClass = null)
+    public function __construct(CrudRepositoryInterface $repository, ?string $entityClass = null)
     {
         $this->repository = $repository;
         $this->entityClass = $entityClass;
@@ -53,7 +53,7 @@ class CrudService implements CrudServiceInterface
         return $words;
     }
 
-    public function getEntity(int $id): ViewModel
+    public function getEntity(string $id): ViewModel
     {
         $entity = $this->repository->find($id);
         $viewModel = new $this->entityClass();
@@ -75,7 +75,7 @@ class CrudService implements CrudServiceInterface
         return $viewModel;
     }
 
-    public function updateEntity(int $id, array $properties): ViewModel
+    public function updateEntity(string $id, array $properties): ViewModel
     {
         $viewModel = new $this->entityClass($properties);
 
@@ -90,7 +90,7 @@ class CrudService implements CrudServiceInterface
         return $viewModel;
     }
 
-    public function deleteEntity(int $id): void
+    public function deleteEntity(string $id): void
     {
         $entity = $this->repository->find($id);
 

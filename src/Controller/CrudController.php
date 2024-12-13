@@ -20,7 +20,7 @@ abstract class CrudController extends AbstractController {
         SerializerInterface $serializer, 
         CrudRepositoryInterface $repository, 
         string $entityClass, 
-        CrudServiceInterface $service = null
+        ?CrudServiceInterface $service = null
     ) {
         $this->serializer = $serializer;
 
@@ -75,7 +75,7 @@ abstract class CrudController extends AbstractController {
     }
 
     #[Route('/{id}', methods: ['PUT'])]
-    public function updateEntity(Request $request, int $id): Response
+    public function updateEntity(Request $request, string $id): Response
     {
         $entity = $this->service->updateEntity($id, json_decode($request->getContent(), true));
 
@@ -83,14 +83,14 @@ abstract class CrudController extends AbstractController {
     }
 
     #[Route('/{id}', methods: ['DELETE'])]
-    public function deleteEntity(Request $request, int $id): Response
+    public function deleteEntity(Request $request, string $id): Response
     {
         $this->service->deleteEntity($id);
 
         return $this->sendResponse(null, Response::HTTP_NO_CONTENT);
     }
 
-    private function sendResponse($payload, int $statusCode = null): Response
+    private function sendResponse($payload, ?int $statusCode = null): Response
     {
         if(!$statusCode) {
             $statusCode = Response::HTTP_OK;
