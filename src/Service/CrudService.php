@@ -29,28 +29,28 @@ class CrudService implements CrudServiceInterface
 
     public function getAll(int $page, array $filters = []): Pageable
     {
-        $wordsPage = $this->repository->getAll($page, $filters);
+        $entitiesPage = $this->repository->getAll($page, $filters);
 
-        $wordsPage->results = array_map(function ($word) {
+        $entitiesPage->items = array_map(function ($entity) {
             $viewModel = new $this->entityClass();
-            $viewModel->fromEntity($word);
+            $viewModel->fromEntity($entity);
             return $viewModel->getAll();
-        }, $wordsPage->results);
+        }, $entitiesPage->items);
         
-        return $wordsPage;
+        return $entitiesPage;
     }
 
     public function getList(array $filters = []): array
     {
-        $words = $this->repository->getList($filters);
+        $entities = $this->repository->getList($filters);
 
-        $words = array_map(function ($word) {
+        $entities = array_map(function ($word) {
             $viewModel = new $this->entityClass();
             $viewModel->fromEntity($word);
             return $viewModel->getList();
-        }, $words);
+        }, $entities);
         
-        return $words;
+        return $entities;
     }
 
     public function getEntity(string $id): ViewModel
