@@ -59,7 +59,7 @@ class CrudService implements CrudServiceInterface
         $viewModel = new $this->entityClass();
         $viewModel->fromEntity($entity);
 
-        return $viewModel;
+        return $viewModel->getEntity();
     }
 
     public function createEntity(array $properties): ViewModel

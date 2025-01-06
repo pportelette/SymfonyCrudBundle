@@ -30,4 +30,9 @@ abstract class ViewModel implements ViewModelInterface {
     public function getList() {
         return $this;
     }
+
+    #[Ignore]
+    public function getEntity() {
+        return $this;
+    }
 }

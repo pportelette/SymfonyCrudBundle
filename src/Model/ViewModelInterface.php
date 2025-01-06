@@ -8,4 +8,5 @@ interface ViewModelInterface {
 
     public function getAll();
     public function getList();
+    public function getEntity();
 }
